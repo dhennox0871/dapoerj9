@@ -26,7 +26,11 @@ class MainApp extends StatelessWidget {
           navigatorKey: Get.navigatorKey,
           debugShowCheckedModeBanner: false,
           theme: value,
-          home: const MainNavigationView(),
+          home: Scaffold(
+            appBar: AppBar(
+              title: Text("Blank App"),
+            ),
+          )(),
           builder: (context, child) => debugView(
             context: context,
             child: child,
