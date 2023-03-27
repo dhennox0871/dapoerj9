@@ -30,7 +30,7 @@ class MainApp extends StatelessWidget {
             appBar: AppBar(
               title: Text("Blank App"),
             ),
-          )(),
+          ),
           builder: (context, child) => debugView(
             context: context,
             child: child,
