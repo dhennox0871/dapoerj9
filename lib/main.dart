@@ -26,7 +26,7 @@ class MainApp extends StatelessWidget {
           navigatorKey: Get.navigatorKey,
           debugShowCheckedModeBanner: false,
           theme: value,
-          home: Container(),
+          home: const MainNavigationView(),
           builder: (context, child) => debugView(
             context: context,
             child: child,
@@ -37,7 +37,3 @@ class MainApp extends StatelessWidget {
     );
   }
 }
-
-class Product {}
-
-class Products {}
