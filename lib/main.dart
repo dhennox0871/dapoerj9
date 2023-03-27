@@ -28,7 +28,7 @@ class MainApp extends StatelessWidget {
           theme: value,
           home: Scaffold(
             appBar: AppBar(
-              title: Text("Blank App"),
+              title: const Text("Blank App"),
             ),
           ),
           builder: (context, child) => debugView(
