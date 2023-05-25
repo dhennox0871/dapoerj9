@@ -5,18 +5,18 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "hyper_ui",
+            "name": "dapoer_j9",
             "request": "launch",
             "type": "dart"
         },
         {
-            "name": "hyper_ui (profile mode)",
+            "name": "dapoer_j9 (profile mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"
         },
         {
-            "name": "hyper_ui (release mode)",
+            "name": "dapoer_j9 (release mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"

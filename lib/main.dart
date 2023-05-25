@@ -1,12 +1,15 @@
-import 'package:hyper_ui/core.dart';
+import 'package:bakery/core.dart';
+import 'package:bakery/debug.dart';
 import 'package:flutter/material.dart';
-import 'package:hyper_ui/debug.dart';
 
 void main() async {
   await initialize();
 
-  
-  Get.mainTheme.value = getDarkTheme();
+  Get.mainTheme.value = getDefaultTheme();
+
+  await NotificationService().initNotifications();
+  await NotificationService().getToken();
+
   runMainApp();
 }
 
@@ -23,11 +26,11 @@ class MainApp extends StatelessWidget {
       valueListenable: Get.mainTheme,
       builder: (context, value, child) {
         return MaterialApp(
-          title: 'Capek Ngoding',
+          title: 'Rocaste Bakery',
           navigatorKey: Get.navigatorKey,
           debugShowCheckedModeBanner: false,
           theme: value,
-          home: Container(),
+          home: const LoginView(),
           builder: (context, child) => debugView(
             context: context,
             child: child,

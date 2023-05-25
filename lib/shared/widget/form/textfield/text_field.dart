@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:bakery/core.dart';
 
 class QTextField extends StatefulWidget {
   final String? id;
@@ -35,27 +35,32 @@ class QTextField extends StatefulWidget {
   State<QTextField> createState() => _QTextFieldState();
 }
 
-class _QTextFieldState extends State<QTextField> {
+class _QTextFieldState extends State<QTextField> implements InputControlState {
   TextEditingController textEditingController = TextEditingController();
 
   @override
   void initState() {
     textEditingController.text = widget.value ?? "";
+    Input.inputController[widget.id ?? const Uuid().v4()] = this;
     super.initState();
   }
 
+  @override
   getValue() {
     return textEditingController.text;
   }
 
+  @override
   setValue(value) {
     textEditingController.text = value;
   }
 
+  @override
   resetValue() {
     textEditingController.text = "";
   }
 
+  @override
   focus() {
     focusNode.requestFocus();
   }
@@ -95,4 +100,3 @@ class _QTextFieldState extends State<QTextField> {
     );
   }
 }
-

@@ -1,4 +1,4 @@
-import 'package:hyper_ui/core.dart';
+import 'package:bakery/core.dart';
 
 class Format {}
 
@@ -24,7 +24,7 @@ extension ParserExtension on dynamic {
 extension NumberFormatExtension on double {
   get idr {
     var value = this;
-    var formatter = NumberFormat.currency(locale: 'id');
+    var formatter = NumberFormat.currency(locale: 'en_US', symbol: 'IDR');
     return formatter.format(value);
   }
 }

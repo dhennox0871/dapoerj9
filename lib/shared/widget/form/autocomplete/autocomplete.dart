@@ -1,4 +1,4 @@
-import 'package:hyper_ui/core.dart';
+import 'package:bakery/core.dart';
 import 'package:flutter/material.dart';
 
 class QAutoComplete extends StatefulWidget {
@@ -84,9 +84,6 @@ class _QAutoCompleteState extends State<QAutoComplete> {
                   ),
                 );
               },
-              
-              
-              
               onSelected: (Map map) {
                 String? label = map["label"];
                 dynamic value = map["value"];
@@ -121,7 +118,7 @@ class _QAutoCompleteState extends State<QAutoComplete> {
                         children: [
                           Container(
                             decoration: BoxDecoration(
-                              color: Theme.of(Get.currentContext)
+                              color: Theme.of(globalContext)
                                   .scaffoldBackgroundColor,
                               borderRadius: const BorderRadius.all(
                                 Radius.circular(12.0),

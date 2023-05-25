@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import '../../../../core.dart';
@@ -6,14 +5,12 @@ import '../../../../core.dart';
 class QRatingField extends StatefulWidget {
   final String label;
   final double? value;
-  final String? Function(String?)? validator;
   final Function(double value)? onChanged;
   const QRatingField({
     Key? key,
     required this.label,
     this.value,
     this.onChanged,
-    this.validator,
   }) : super(key: key);
 
   @override
@@ -64,4 +61,3 @@ class _QRatingFieldState extends State<QRatingField> {
     );
   }
 }
-

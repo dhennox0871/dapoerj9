@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 
 class QCategoryPicker extends StatefulWidget {
   final List<Map<String, dynamic>> items;
-  final String? label;
-  final bool? wrapMode;
   final dynamic value;
-  final String? Function(dynamic)? validator;
 
   final Function(
     Map<String, dynamic> item,
@@ -25,9 +22,6 @@ class QCategoryPicker extends StatefulWidget {
     required this.onChanged,
     this.itemBuilder,
     this.value,
-    this.validator,
-    this.label,
-    this.wrapMode = false,
   }) : super(key: key);
 
   @override
@@ -47,109 +41,39 @@ class _QCategoryPickerState extends State<QCategoryPicker> {
     widget.onChanged(index, label, value, item);
   }
 
-  getLabel() {
-    if (widget.label == null) return Container();
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          "${widget.label}",
-          style: TextStyle(
-            fontSize: 12.0,
-            color: Theme.of(context).textTheme.bodySmall?.color,
-          ),
-        ),
-        const SizedBox(
-          height: 6.0,
-        ),
-      ],
-    );
-  }
-
-  @override
-  void initState() {
-    if (widget.value != null) {
-      selectedIndex =
-          widget.items.indexWhere((i) => i["value"] == widget.value);
-    }
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
-    if (widget.wrapMode == true) {
-      return SizedBox(
+    return SingleChildScrollView(
+      controller: ScrollController(),
+      scrollDirection: Axis.horizontal,
+      clipBehavior: Clip.none,
+      child: SizedBox(
         width: MediaQuery.of(context).size.width,
-        child: Column(
+        child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            getLabel(),
-            Wrap(
-              crossAxisAlignment: WrapCrossAlignment.start,
-              children: List.generate(widget.items.length, (index) {
-                bool selected = selectedIndex == index;
-                var item = widget.items[index];
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: List.generate(widget.items.length, (index) {
+            bool selected = selectedIndex == index;
+            var item = widget.items[index];
 
-                if (widget.itemBuilder != null) {
-                  return widget.itemBuilder!(item, selected, () {
-                    updateIndex(index);
-                  });
-                }
+            if (widget.itemBuilder != null) {
+              return widget.itemBuilder!(item, selected, () {
+                updateIndex(index);
+              });
+            }
 
-                return InkWell(
-                  onTap: () => updateIndex(index),
-                  child: Card(
-                    color: selected ? Colors.black : null,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(item["label"]),
-                    ),
-                  ),
-                );
-              }),
-            ),
-          ],
+            return InkWell(
+              onTap: () => updateIndex(index),
+              child: Card(
+                color: selected ? Colors.black : null,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(item["label"]),
+                ),
+              ),
+            );
+          }),
         ),
-      );
-    }
-
-    return SizedBox(
-      width: MediaQuery.of(context).size.width,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          getLabel(),
-          SingleChildScrollView(
-            controller: ScrollController(),
-            scrollDirection: Axis.horizontal,
-            clipBehavior: Clip.none,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: List.generate(widget.items.length, (index) {
-                bool selected = selectedIndex == index;
-                var item = widget.items[index];
-
-                if (widget.itemBuilder != null) {
-                  return widget.itemBuilder!(item, selected, () {
-                    updateIndex(index);
-                  });
-                }
-
-                return InkWell(
-                  onTap: () => updateIndex(index),
-                  child: Card(
-                    color: selected ? Colors.black : null,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(item["label"]),
-                    ),
-                  ),
-                );
-              }),
-            ),
-          ),
-        ],
       ),
     );
   }

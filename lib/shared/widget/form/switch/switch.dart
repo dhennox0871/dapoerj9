@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class QSwitch extends StatefulWidget {
@@ -6,7 +5,6 @@ class QSwitch extends StatefulWidget {
   final String? hint;
   final List<Map<String, dynamic>> items;
   final String? Function(List<Map<String, dynamic>> item)? validator;
-  final List? value;
   final Function(List<Map<String, dynamic>> values, List ids) onChanged;
 
   const QSwitch({
@@ -14,7 +12,6 @@ class QSwitch extends StatefulWidget {
     required this.label,
     required this.items,
     this.validator,
-    this.value,
     this.hint,
     required this.onChanged,
   }) : super(key: key);
@@ -38,8 +35,6 @@ class _QSwitchState extends State<QSwitch> {
   Widget build(BuildContext context) {
     return FormField(
       initialValue: false,
-      
-      
       validator: (value) => widget.validator!(items),
       enabled: true,
       builder: (FormFieldState<bool> field) {
@@ -83,4 +78,3 @@ class _QSwitchState extends State<QSwitch> {
     );
   }
 }
-

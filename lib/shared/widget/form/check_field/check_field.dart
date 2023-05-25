@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class QCheckField extends StatefulWidget {
@@ -6,7 +5,6 @@ class QCheckField extends StatefulWidget {
   final String? hint;
   final List<Map<String, dynamic>> items;
   final String? Function(List<Map<String, dynamic>> item)? validator;
-  final List? value;
   final Future<List<Map<String, dynamic>>> Function()? onFuture;
   final Function(List<Map<String, dynamic>> values, List ids) onChanged;
 
@@ -15,7 +13,6 @@ class QCheckField extends StatefulWidget {
     required this.label,
     required this.items,
     this.validator,
-    this.value,
     this.onFuture,
     this.hint,
     required this.onChanged,
@@ -37,19 +34,6 @@ class _QCheckFieldState extends State<QCheckField> {
     loadItems();
   }
 
-  setValue(List values) {
-    for (var itemRow in values) {
-      var searchValues =
-          widget.items.where((i) => i["value"] == itemRow["value"]).toList();
-      if (searchValues.isEmpty) {
-        items.add(itemRow);
-      }
-    }
-    setState(() {});
-  }
-
-  getValue() {}
-
   loadItems() async {
     if (widget.onFuture == null) return;
 
@@ -62,8 +46,6 @@ class _QCheckFieldState extends State<QCheckField> {
   Widget build(BuildContext context) {
     return FormField(
       initialValue: false,
-      
-      
       validator: (value) => widget.validator!(items),
       enabled: true,
       builder: (FormFieldState<bool> field) {
@@ -106,4 +88,3 @@ class _QCheckFieldState extends State<QCheckField> {
     );
   }
 }
-

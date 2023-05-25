@@ -1,4 +1,3 @@
-
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
@@ -177,13 +176,13 @@ class _QImagePickerState extends State<QImagePicker> {
             ),
             child: Visibility(
               visible: loading == true,
-              child: SizedBox(
+              child: const SizedBox(
                 width: 30,
                 height: 30,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
+                  children: [
                     SizedBox(
                       width: 20.0,
                       height: 20.0,
@@ -218,8 +217,6 @@ class _QImagePickerState extends State<QImagePicker> {
                 builder: (FormFieldState<bool> field) {
                   return TextFormField(
                     controller: controller,
-                    
-
                     obscureText: widget.obscure,
                     readOnly: true,
                     decoration: InputDecoration(
@@ -265,4 +262,3 @@ class _QImagePickerState extends State<QImagePicker> {
     );
   }
 }
-

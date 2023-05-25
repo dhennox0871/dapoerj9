@@ -1,5 +1,3 @@
-
-
 class Validator {
   static String? rule(
     String? value, {
@@ -11,7 +9,6 @@ class Validator {
     return null;
   }
 
-  
   static String? required(
     dynamic value, {
     String? fieldName,
@@ -47,7 +44,6 @@ class Validator {
     return null;
   }
 
-  
   static String? atLeastOneitem(List<Map<String, dynamic>> items) {
     var checkedItems = items.where((i) => i["checked"] == true).toList();
     if (checkedItems.isEmpty) {
@@ -56,4 +52,3 @@ class Validator {
     return null;
   }
 }
-
